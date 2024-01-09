@@ -14,6 +14,7 @@ const barlow = Barlow({ subsets: ["latin"], weight: "400" });
 const bellefair = Bellefair({ subsets: ["latin"], weight: "400" });
 
 const Page = ({ params: { planet } }: { params: { planet: string } }) => {
+  const pathname = usePathname();
   const destination = data.destination.find((d) => d.name == planet)!;
   const { images, description, distance, travel } = destination;
 
@@ -33,7 +34,7 @@ const Page = ({ params: { planet } }: { params: { planet: string } }) => {
           <Nav
             links={data.destination.map(({ name }) => ({
               label: name.toUpperCase(),
-              href: path.join(path.dirname(usePathname()), name),
+              href: path.join(path.dirname(pathname), name),
               scroll: false,
             }))}
             style={{

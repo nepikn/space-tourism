@@ -1,5 +1,5 @@
 {
-  "name": "film-scheduler-next",
+  "name": "space-tourism",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -42,7 +42,7 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.2.2"
   },
-  "description": "",
+  "description": "[Live Demo]()",
   "main": "next.config.js",
   "directories": {
     "lib": "lib"
