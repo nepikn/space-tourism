@@ -11,7 +11,7 @@ export default function NotFound() {
       <div className="mx-auto mt-8 w-full max-w-lg md:mt-0">
         <Button size="xl" className="w-full font-bold" variant="brand">
           <Link
-            href="/golden-horse-taipei"
+            href="/"
             className="pb-1 text-zinc-100 dark:text-zinc-800"
           >
             Home
