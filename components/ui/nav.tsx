@@ -15,7 +15,6 @@ export function MainNav() {
       label: dir.toUpperCase(),
     })),
   ];
-
   const style = {
     nav: "flex h-full w-[356px] text-sm font-normal text-white md:justify-between md:tracking-widest lg:w-auto lg:gap-12 lg:tracking-[2.70px]",
     link: "flex h-full items-center lg:gap-3",

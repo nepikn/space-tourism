@@ -35,14 +35,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const backgrounds = {
-  //   home: "bg-[url(/assets/home/background-home-mobile.jpg)] md:bg-[url(/assets/home/background-home-tablet.jpg)] lg:bg-[url(/assets/home/background-home-desktop.jpg)]",
-  //   destination:
-  //     "bg-[url(/assets/destination/background-destination-mobile.jpg)] md:bg-[url(/assets/destination/background-destination-tablet.jpg)] lg:bg-[url(/assets/destination/background-destination-desktop.jpg)]",
-  //   crew: "bg-[url(/assets/crew/background-crew-mobile.jpg)] md:bg-[url(/assets/crew/background-crew-tablet.jpg)] lg:bg-[url(/assets/crew/background-crew-desktop.jpg)]",
-  //   technology:
-  //     "bg-[url(/assets/technology/background-technology-mobile.jpg)] md:bg-[url(/assets/technology/background-technology-tablet.jpg)] lg:bg-[url(/assets/technology/background-technology-desktop.jpg)]",
-  // };
   const defaultImgDir = "home";
   const prefixByScreens = { mobile: "", tablet: "md:", desktop: "lg:" };
   const backgrounds = Object.fromEntries(
@@ -61,8 +53,8 @@ export default function RootLayout({
     <html className={barlowCondensed.className}>
       <body className="">
         {/* <Provider attribute="class"> */}
-        <Background fallbackDir={defaultImgDir} srcsets={backgrounds} />
-        <div className="lg:h-[900px]')] grid content-between gap-6  md:h-[1024px]">
+        <div className="grid content-between">
+          <Background fallbackDir={defaultImgDir} srcsets={backgrounds} />
           <header className="relative flex items-center justify-between p-6 md:p-0 md:pl-10 lg:mt-10 lg:pl-[55px]">
             <Image
               alt="logo"
