@@ -4,9 +4,11 @@ import { Provider } from "@/components/provider";
 import { Barlow_Condensed, Bellefair } from "next/font/google";
 import Image from "next/image";
 import { MainNav } from "@/components/ui/nav";
+import data from "@/public/data.json";
+import Background from "@/components/ui/background";
 
 export const metadata: Metadata = {
-  title: { template: "Space - %s", default: "Space" },
+  title: { template: "%s - Space Tourism", default: "Space Tourism" },
   generator: "Next.js",
   // applicationName: "Kaminari",
   referrer: "origin-when-cross-origin",
@@ -33,36 +35,59 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // const backgrounds = {
+  //   home: "bg-[url(/assets/home/background-home-mobile.jpg)] md:bg-[url(/assets/home/background-home-tablet.jpg)] lg:bg-[url(/assets/home/background-home-desktop.jpg)]",
+  //   destination:
+  //     "bg-[url(/assets/destination/background-destination-mobile.jpg)] md:bg-[url(/assets/destination/background-destination-tablet.jpg)] lg:bg-[url(/assets/destination/background-destination-desktop.jpg)]",
+  //   crew: "bg-[url(/assets/crew/background-crew-mobile.jpg)] md:bg-[url(/assets/crew/background-crew-tablet.jpg)] lg:bg-[url(/assets/crew/background-crew-desktop.jpg)]",
+  //   technology:
+  //     "bg-[url(/assets/technology/background-technology-mobile.jpg)] md:bg-[url(/assets/technology/background-technology-tablet.jpg)] lg:bg-[url(/assets/technology/background-technology-desktop.jpg)]",
+  // };
+  const defaultImgDir = "home";
+  const prefixByScreens = { mobile: "", tablet: "md:", desktop: "lg:" };
+  const backgrounds = Object.fromEntries(
+    [defaultImgDir, ...Object.keys(data)].map((dir) => [
+      dir,
+      Object.entries(prefixByScreens)
+        .map(
+          ([screen, prefix]) =>
+            `${prefix}bg-[url(/assets/${dir}/background-${dir}-${screen}.jpg)]`,
+        )
+        .join(" "),
+    ]),
+  );
+
   return (
     <html className={barlowCondensed.className}>
-      <body className="bg-stone-100 text-[15px] text-stone-900 dark:bg-neutral-800 dark:text-neutral-200 dark:selection:bg-blue-300">
-        <Provider attribute="class">
-          <div className="grid content-between gap-6 bg-[url('/assets/home/background-home-mobile.jpg')] bg-cover md:h-[1024px] md:bg-[url('/assets/home/background-home-tablet.jpg')] lg:h-[900px] lg:bg-[url('/assets/home/background-home-desktop.jpg')]">
-            <header className="relative flex items-center justify-between p-6 md:p-0 md:pl-10 lg:mt-10 lg:pl-[55px]">
+      <body className="">
+        {/* <Provider attribute="class"> */}
+        <Background fallbackDir={defaultImgDir} srcsets={backgrounds} />
+        <div className="lg:h-[900px]')] grid content-between gap-6  md:h-[1024px]">
+          <header className="relative flex items-center justify-between p-6 md:p-0 md:pl-10 lg:mt-10 lg:pl-[55px]">
+            <Image
+              alt="logo"
+              src={"/assets/shared/logo.svg"}
+              width={40}
+              height={40}
+              className="lg:h-12 lg:w-12"
+            />
+            <div className="hidden w-[30px] lg:block"></div>
+            <div className="z-10 hidden h-px grow-[2] translate-x-8 bg-white opacity-25 lg:block" />
+            <button className="md:hidden">
               <Image
-                alt="logo"
-                src={"/assets/shared/logo.svg"}
-                width={40}
-                height={40}
-                className="lg:h-12 lg:w-12"
+                alt="menu"
+                src={"/assets/shared/icon-hamburger.svg"}
+                width={24}
+                height={21}
               />
-              <div className="hidden w-[30px] lg:block"></div>
-              <div className="z-10 hidden h-px grow-[2] translate-x-8 bg-white opacity-25 lg:block" />
-              <button className="md:hidden">
-                <Image
-                  alt="menu"
-                  src={"/assets/shared/icon-hamburger.svg"}
-                  width={21}
-                  height={24}
-                />
-              </button>
-              <div className="lg hidden h-24 bg-white bg-opacity-5 backdrop-blur-3xl md:flex md:w-[450px] md:justify-center lg:w-[765px] lg:justify-end lg:pr-[165px]">
-                <MainNav />
-              </div>
-            </header>
-            {children}
-          </div>
-        </Provider>
+            </button>
+            <div className="lg hidden h-24 bg-white bg-opacity-5 backdrop-blur-3xl md:flex md:w-[450px] md:justify-center lg:w-[765px] lg:justify-end lg:pr-[165px]">
+              <MainNav />
+            </div>
+          </header>
+          {children}
+        </div>
+        {/* </Provider> */}
       </body>
     </html>
   );

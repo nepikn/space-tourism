@@ -1,7 +1,7 @@
 {
   "destination": [
     {
-      "name": "moon",
+      "name": "Moon",
       "images": {
         "png": "/assets/destination/image-moon.png",
         "webp": "/assets/destination/image-moon.webp"
@@ -11,7 +11,7 @@
       "travel": "3 days"
     },
     {
-      "name": "mars",
+      "name": "Mars",
       "images": {
         "png": "/assets/destination/image-mars.png",
         "webp": "/assets/destination/image-mars.webp"
@@ -21,7 +21,7 @@
       "travel": "9 months"
     },
     {
-      "name": "europa",
+      "name": "Europa",
       "images": {
         "png": "/assets/destination/image-europa.png",
         "webp": "/assets/destination/image-europa.webp"
@@ -31,7 +31,7 @@
       "travel": "3 years"
     },
     {
-      "name": "titan",
+      "name": "Titan",
       "images": {
         "png": "/assets/destination/image-titan.png",
         "webp": "/assets/destination/image-titan.webp"

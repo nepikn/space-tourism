@@ -1,22 +1,36 @@
-"use client";
-
 import Nav from "@/components/ui/nav";
 import data from "@/public/data.json";
 import clsx from "clsx";
+import { Metadata } from "next";
 import { Barlow, Bellefair } from "next/font/google";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import path from "path";
+
+interface Page {
+  params: {
+    planet: string;
+  };
+}
 
 export const dynamicParams = false;
+export async function generateStaticParams() {
+  return data.destination.map((d) => ({
+    planet: d.name,
+  } satisfies Page['params']));
+}
+
+export async function generateMetadata({ params }: Page) {
+  return {
+    title: params.planet,
+  } satisfies Metadata;
+}
 
 const barlow = Barlow({ subsets: ["latin"], weight: "400" });
 const bellefair = Bellefair({ subsets: ["latin"], weight: "400" });
 
-const Page = ({ params: { planet } }: { params: { planet: string } }) => {
-  const pathname = usePathname();
-  const destination = data.destination.find((d) => d.name == planet)!;
-  const { images, description, distance, travel } = destination;
+const Page = ({ params: { planet } }: Page) => {
+  const { images, description, distance, travel } = data.destination.find(
+    (d) => d.name == planet,
+  )!;
 
   return (
     <div className="mb-[57px] grid justify-items-center gap-y-8 px-6">
@@ -34,7 +48,7 @@ const Page = ({ params: { planet } }: { params: { planet: string } }) => {
           <Nav
             links={data.destination.map(({ name }) => ({
               label: name.toUpperCase(),
-              href: path.join(path.dirname(pathname), name),
+              paths: [name],
               scroll: false,
             }))}
             style={{
