@@ -73,7 +73,7 @@ export default function RootLayout({
                 height={21}
               />
             </button>
-            <div className="lg hidden h-24 bg-white bg-opacity-5 backdrop-blur-3xl md:flex md:w-[450px] md:justify-center lg:w-[765px] lg:justify-end lg:pr-[165px]">
+            <div className="hidden h-24 bg-white bg-opacity-5 backdrop-blur-3xl md:flex md:w-[450px] md:justify-center lg:w-[765px] lg:justify-end lg:pr-[165px]">
               <MainNav />
             </div>
           </header>

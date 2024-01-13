@@ -12,11 +12,11 @@ export function MainNav() {
     { href: path.sep, label: "HOME" },
     ...Object.entries(data).map(([dir, pages]) => ({
       href: path.join(path.sep, dir, pages[0].name),
-      label: dir.toUpperCase(),
+      label: dir,
     })),
   ];
   const style = {
-    nav: "flex h-full w-[356px] text-sm font-normal text-white md:justify-between md:tracking-widest lg:w-auto lg:gap-12 lg:tracking-[2.70px]",
+    nav: "flex uppercase h-full w-[356px] text-sm font-normal text-white md:justify-between md:tracking-widest lg:w-auto lg:gap-12 lg:tracking-[2.70px]",
     link: "flex h-full items-center lg:gap-3",
     active: "border-b-[3px] border-white",
   };
