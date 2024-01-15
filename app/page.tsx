@@ -8,11 +8,11 @@ const bellefair = Bellefair({ subsets: ["latin"], weight: "400" });
 
 export default function Home() {
   return (
-    <main className="relative mx-6 mb-12 grid gap-20 md:mb-[90px] md:gap-[165px] lg:mx-auto lg:mb-[131px] lg:grid-flow-col lg:items-end lg:justify-between xl:mx-[165px]">
-      <div className="grid items-center justify-center gap-4 md:gap-6">
+    <main className="relative m-6 mb-12 grid gap-20 md:mb-[90px] md:mt-[106px] md:gap-[156px] lg:mx-auto lg:mb-[131px] lg:mt-[251px] lg:grid-flow-col lg:items-end lg:justify-between xl:mx-[165px]">
+      <div className="grid items-center justify-center gap-4 text-center md:gap-6 lg:text-left">
         <p
           className={clsx(
-            "text-center font-normal tracking-[2.70px] text-indigo-200 md:text-[20px] lg:text-[28px]",
+            "font-normal tracking-[2.70px] text-indigo-200 md:text-xl md:tracking-[3.38px] lg:text-[28px] lg:leading-[34px] lg:tracking-[4.72px]",
           )}
         >
           SO, YOU WANT TO TRAVEL TO
@@ -20,7 +20,7 @@ export default function Home() {
         <p
           className={clsx(
             bellefair.className,
-            "text-center text-[80px] font-normal leading-[100px] text-white md:text-[150px] md:leading-[150px]",
+            "text-[80px] font-normal leading-[100px] text-white md:text-[150px] md:leading-[150px] lg:leading-[172px]",
           )}
         >
           SPACE
@@ -28,7 +28,7 @@ export default function Home() {
         <p
           className={clsx(
             barlow.className,
-            "max-w-[444px] text-center text-[15px] leading-[25px] text-indigo-200 md:text-base md:leading-[28px] lg:text-[18px]",
+            "max-w-[444px] text-[15px] leading-[25px] text-indigo-200 md:text-base md:leading-7 lg:text-[18px] lg:leading-8",
           )}
         >
           Let’s face it; if you want to go to space, you might as well genuinely
