@@ -4,7 +4,6 @@ import { Provider } from "@/components/provider";
 import { Barlow_Condensed, Bellefair } from "next/font/google";
 import Image from "next/image";
 import { MainNav } from "@/components/ui/nav";
-import data from "@/public/data.json";
 import Background from "@/components/ui/background";
 
 export const metadata: Metadata = {
@@ -35,26 +34,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const defaultImgDir = "home";
-  const prefixByScreens = { mobile: "", tablet: "md:", desktop: "lg:" };
-  const backgrounds = Object.fromEntries(
-    [defaultImgDir, ...Object.keys(data)].map((dir) => [
-      dir,
-      Object.entries(prefixByScreens)
-        .map(
-          ([screen, prefix]) =>
-            `${prefix}bg-[url(/assets/${dir}/background-${dir}-${screen}.jpg)]`,
-        )
-        .join(" "),
-    ]),
-  );
-
   return (
     <html className={barlowCondensed.className}>
       <body className="">
         {/* <Provider attribute="class"> */}
-        <div className="grid content-between">
-          <Background fallbackDir={defaultImgDir} srcsets={backgrounds} />
+        <div className="relative grid content-between">
+          <Background />
           <header className="relative flex items-center justify-between p-6 md:p-0 md:pl-10 lg:mt-10 lg:pl-[55px]">
             <Image
               alt="logo"
