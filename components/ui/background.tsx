@@ -1,6 +1,5 @@
 "use client";
 
-import clsx from "clsx";
 import data from "@/public/data.json";
 import { usePathname } from "next/navigation";
 import path from "path";
@@ -16,17 +15,13 @@ export default function Background() {
   const dir = dirs.includes(pathname) ? pathname : "home";
 
   return (
-    <picture className="absolute grid h-full items-stretch -z-10">
+    <picture className="absolute -z-10 block h-full w-full">
       {Object.entries(maxWidthByScreen).map(([screen, maxWidth], i) => {
         const src = getSrc(dir, screen);
         return maxWidth ? (
-          <source
-            srcSet={src}
-            media={`(max-width: ${maxWidth}px)`}
-            className="hidden"
-          />
+          <source srcSet={src} media={`(max-width: ${maxWidth}px)`} />
         ) : (
-          <img src={src} alt="" className="object-cover" />
+          <img src={src} alt="" className="h-full w-full object-cover" />
         );
       })}
     </picture>
