@@ -35,7 +35,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface ButtonProps
@@ -54,12 +54,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       />
     );
-  }
+  },
 );
+Button.displayName = "Button";
 
 export { Button, buttonVariants };
 
-{/* <div className="">
+{
+  /* <div className="">
   <Button size="xl" className="w-full font-bold" variant="brand">
     <a
       href="https://github.com/lucky-chap/kaminari"
@@ -70,4 +72,5 @@ export { Button, buttonVariants };
       Repo
     </a>{" "}
   </Button>
-</div> */}
+</div> */
+}

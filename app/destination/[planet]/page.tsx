@@ -36,7 +36,7 @@ const Page = ({ params: { planet } }: Page) => {
   )!;
 
   return (
-    <main className="mb-[57px] grid justify-items-center gap-y-8 px-6 md:mb-[62px] md:mt-10 md:gap-y-[60px] md:px-0 lg:mt-[76px] lg:gap-y-16 lg:justify-self-center lg:px-16 xl:px-[167px] xl:mb-[112px]">
+    <main className="mb-[57px] grid justify-items-center gap-y-8 px-6 md:mb-[62px] md:mt-10 md:gap-y-[60px] md:px-0 lg:mt-[76px] lg:gap-y-16 lg:justify-self-center lg:px-16 xl:mb-[112px] xl:px-[167px]">
       <h1 className="flex gap-x-[18px] pr-1 text-base uppercase tracking-[2.70px] text-white before:font-bold before:tracking-[2.70px] before:opacity-25 before:content-['01'] md:gap-x-[22px] md:justify-self-start md:px-[38.5px] lg:gap-x-7 lg:px-0 lg:text-[28px]">
         Pick your destination
       </h1>
@@ -46,12 +46,12 @@ const Page = ({ params: { planet } }: Page) => {
         </div>
         <div className="grid justify-items-center gap-y-5 md:gap-y-[46px] lg:justify-items-start lg:gap-y-9">
           <Nav
-            links={data.destination.map(({ name: planet }) => ({
+            linkProps={data.destination.map(({ name: planet }) => ({
               label: planet,
               paths: [planet],
               scroll: false,
             }))}
-            style={{
+            styles={{
               nav: "flex h-7 gap-7 text-sm uppercase tracking-widest text-indigo-200 md:h-[34px] md:w-[285.5px] md:justify-between md:text-xs lg:text-base lg:tracking-[2.70px]",
               active: "border-b-[3px] border-white text-white",
             }}
@@ -75,7 +75,7 @@ const Page = ({ params: { planet } }: Page) => {
                 {description}
               </p>
             </div>
-            <dl className="grid gap-y-8 uppercase md:w-full md:grid-flow-col md:justify-evenly lg:justify-start lg:gap-x-20">
+            <dl className="grid gap-y-8 uppercase md:w-full md:grid-flow-col md:justify-evenly lg:justify-between lg:after:content-[''] xl:justify-start xl:gap-x-20">
               {[
                 { title: "AVG. DISTANCE", content: distance },
                 { title: "Est. travel time", content: travel },
