@@ -1,5 +1,6 @@
 "use client";
 
+import { useSubSegment } from "@/app/(sub)/layout";
 import data from "@/public/data.json";
 import { cva } from "class-variance-authority";
 import Link, { LinkProps } from "next/link";
@@ -20,7 +21,7 @@ export function MainNav({
   ];
 
   const variants = {
-    nav: cva("uppercase text-white [counter-reset:count_-1]", {
+    nav: cva("uppercase [counter-reset:count_-1]", {
       variants: {
         variant: {
           horizontal:
@@ -70,9 +71,9 @@ interface Styles {
   active?: string;
 }
 
-interface NavLinks {
+interface Nav {
   linkProps: (Partial<LinkProps> & {
-    paths?: string[];
+    segments?: string[];
     label: string;
   })[];
   styles: Styles;
@@ -83,7 +84,7 @@ interface NavLinks {
   };
 }
 
-export default function Nav({ linkProps, styles, option }: NavLinks) {
+export default function Nav({ linkProps, styles, option }: Nav) {
   const pathname = usePathname();
 
   return (
@@ -91,9 +92,9 @@ export default function Nav({ linkProps, styles, option }: NavLinks) {
       {linkProps.map((linkProp) => {
         const href =
           linkProp.href ??
-          path.join(path.dirname(pathname), ...linkProp.paths!);
+          path.join(path.dirname(pathname), ...linkProp.segments!);
         const isActive = option?.main
-          ? pathname.split(path.sep)[1] == href.toString().split(path.sep)[1]
+          ? useSubSegment() == useSubSegment(href.toString())
           : pathname == href;
 
         return (

@@ -20,7 +20,7 @@ export default function Home() {
         <p
           className={clsx(
             bellefair.className,
-            "text-[80px] font-normal leading-[100px] text-white md:text-[150px] md:leading-[150px] lg:leading-[172px]",
+            "text-[80px] font-normal leading-[100px] md:text-[150px] md:leading-[150px] lg:leading-[172px]",
           )}
         >
           SPACE
