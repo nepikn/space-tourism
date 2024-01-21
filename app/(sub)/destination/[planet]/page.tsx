@@ -36,7 +36,7 @@ const Page = ({ params: { planet } }: Page) => {
   )!;
 
   return (
-    <div className="mb-[58px] grid justify-items-center gap-y-[26px] md:gap-y-[53px] md:px-24 lg:grid-cols-2 lg:items-end lg:gap-x-[calc(100%/7)] lg:px-0 lg:pl-16">
+    <div className="mb-[58px] grid justify-items-center gap-y-[26px] md:mb-0 md:gap-y-[53px] md:px-24 lg:grid-cols-2 lg:items-end lg:gap-x-[calc(100%/7)] lg:px-0 lg:pl-16">
       <div className="relative grid aspect-square w-[170px] md:w-[300px] lg:w-full">
         <Image alt={planet} src={images.png} fill />
       </div>
@@ -57,7 +57,7 @@ const Page = ({ params: { planet } }: Page) => {
             <h2
               className={clsx(
                 bellefair.className,
-                "text-[56px] uppercase md:mb-[36.43px] md:text-[58.24px] md:leading-none lg:mb-[14px] lg:text-[100px]",
+                "text-[56px] uppercase md:mb-[36.43px] md:text-[58.24px] md:leading-none lg:mb-[14px] lg:text-[100px] lg:leading-[1.15]",
               )}
             >
               {planet}
@@ -65,13 +65,13 @@ const Page = ({ params: { planet } }: Page) => {
             <p
               className={clsx(
                 barlow.className,
-                "text-[15px] leading-[25px] md:px-[12.75px] md:text-indigo-200 lg:text-lg lg:leading-loose",
+                "text-[15px] leading-[25px] md:text-indigo-200 md:max-lg:px-[12.75px] lg:text-lg lg:leading-loose",
               )}
             >
               {description}
             </p>
           </div>
-          <dl className="grid gap-y-8 uppercase md:w-full md:grid-flow-col md:justify-evenly lg:justify-between lg:after:content-[''] xl:justify-start xl:gap-x-20">
+          <dl className="grid gap-y-8 uppercase md:w-full md:grid-flow-col md:justify-evenly lg:justify-between lg:max-xl:after:content-[''] xl:justify-start xl:gap-x-20">
             {[
               { title: "AVG. DISTANCE", content: distance },
               { title: "Est. travel time", content: travel },

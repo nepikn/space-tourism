@@ -21,7 +21,7 @@ export function MainNav({
   ];
 
   const variants = {
-    nav: cva("uppercase [counter-reset:count_-1]", {
+    nav: cva("uppercase text-white [counter-reset:count_-1]", {
       variants: {
         variant: {
           horizontal:
@@ -31,11 +31,11 @@ export function MainNav({
       },
     }),
     link: cva(
-      "flex h-full items-center gap-3 border-0 border-white py-[6px] [counter-increment:count_1] before:font-bold before:content-[counter(count,decimal-leading-zero)] md:max-lg:before:content-none",
+      "flex h-full items-center gap-3 border-0 border-white border-t-transparent py-[6px] [counter-increment:count_1] before:font-bold before:content-[counter(count,decimal-leading-zero)] md:max-lg:before:content-none",
       {
         variants: {
           active: {
-            horizontal: "border-b-[3px]",
+            horizontal: "border-y-[3px]",
             vertical: "border-r-4",
           },
         },

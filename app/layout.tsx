@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html className={barlowCondensed.className}>
       <body className="text-white">
-        <div className="relative grid content-between">
+        <div className="relative flex flex-col justify-between md:h-[1024px] lg:grid lg:h-[900px] lg:justify-start">
           <Background />
           <Header />
           {children}
