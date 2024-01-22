@@ -36,8 +36,8 @@ const Page = ({ params: { planet } }: Page) => {
   )!;
 
   return (
-    <div className="mb-[58px] grid justify-items-center gap-y-[26px] md:mb-0 md:gap-y-[53px] md:px-24 lg:grid-cols-2 lg:items-end lg:gap-x-[calc(100%/7)] lg:px-0 lg:pl-16">
-      <div className="relative grid aspect-square w-[170px] md:w-[300px] lg:w-full">
+    <div className="mb-[58px] grid justify-items-center gap-y-[26px] md:mb-0 md:gap-y-[53px] md:px-24 lg:mb-[118px] lg:grid-cols-2 lg:items-end lg:gap-x-[calc(100%/7)] lg:px-0 lg:pl-16">
+      <div className="relative grid aspect-square w-[170px] md:w-[300px] lg:w-full xl:h-full xl:w-auto">
         <Image alt={planet} src={images.png} fill />
       </div>
       <div className="grid justify-items-center gap-y-5 md:gap-y-[46px] lg:justify-items-start lg:gap-y-9">
@@ -65,7 +65,7 @@ const Page = ({ params: { planet } }: Page) => {
             <p
               className={clsx(
                 barlow.className,
-                "text-[15px] leading-[25px] md:text-indigo-200 md:max-lg:px-[12.75px] lg:text-lg lg:leading-loose",
+                "text-[15px] leading-[25px] md:text-indigo-200 md:max-lg:px-[12.75px] lg:text-lg lg:leading-8",
               )}
             >
               {description}
@@ -77,10 +77,15 @@ const Page = ({ params: { planet } }: Page) => {
               { title: "Est. travel time", content: travel },
             ].map(({ title, content }) => (
               <div key={title} className="grid gap-y-3">
-                <dt className="text-sm tracking-widest text-indigo-200">
+                <dt className="text-sm leading-[1.2] tracking-widest text-indigo-200">
                   {title}
                 </dt>
-                <dd className={clsx(bellefair.className, "text-[28px]")}>
+                <dd
+                  className={clsx(
+                    bellefair.className,
+                    "text-[28px] leading-[1.14]",
+                  )}
+                >
                   {content}
                 </dd>
               </div>

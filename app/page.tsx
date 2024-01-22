@@ -2,6 +2,8 @@
 
 import { Bellefair, Barlow } from "next/font/google";
 import clsx from "clsx";
+import React from "react";
+import { ClassNameValue } from "tailwind-merge";
 
 const barlow = Barlow({ subsets: ["latin"], weight: "400" });
 const bellefair = Bellefair({ subsets: ["latin"], weight: "400" });
@@ -25,17 +27,7 @@ export default function Home() {
         >
           SPACE
         </p>
-        <p
-          className={clsx(
-            barlow.className,
-            "max-w-[444px] text-[15px] leading-[25px] text-indigo-200 md:text-base md:leading-7 lg:text-[18px] lg:leading-8",
-          )}
-        >
-          Let’s face it; if you want to go to space, you might as well genuinely
-          go to outer space and not hover kind of on the edge of it. Well sit
-          back, and relax because we’ll give you a truly out of this world
-          experience!
-        </p>
+        <Description content="Let’s face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of on the edge of it. Well sit back, and relax because we’ll give you a truly out of this world experience!" />
       </div>
       <div className="grid place-content-center">
         <div
@@ -48,5 +40,24 @@ export default function Home() {
         </div>
       </div>
     </main>
+  );
+}
+
+interface Description {
+  content: string;
+  style?: ClassNameValue;
+}
+
+export function Description({ content, style }: Description) {
+  return (
+    <p
+      className={clsx(
+        barlow.className,
+        "max-w-[444px] text-[15px] leading-[25px] text-indigo-200 md:text-base md:leading-7 lg:text-[18px] lg:leading-8",
+        style,
+      )}
+    >
+      {content}
+    </p>
   );
 }
