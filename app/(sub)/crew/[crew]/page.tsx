@@ -51,7 +51,7 @@ const Page = ({ params: { crew } }: Page) => {
   // const dimension = DIMENSIONS[name];
 
   return (
-    <div className="mb-[104px] flex flex-col justify-center gap-y-8 md:mb-0 md:gap-y-10 md:px-[88px] md:max-lg:grow lg:absolute lg:bottom-0 lg:h-full lg:w-full lg:flex-row lg:items-end lg:justify-between lg:gap-x-2 lg:px-0">
+    <div className="mb-[104px] px-6 flex flex-col justify-center gap-y-8 md:mb-0 md:gap-y-10 md:px-[88px] md:max-lg:grow lg:absolute lg:bottom-0 lg:h-full lg:w-full lg:flex-row lg:items-end lg:justify-between lg:gap-x-2 lg:px-0">
       <picture className="relative flex h-[223px] justify-center border-b border-gray-700 md:order-1 md:border-0 md:max-lg:grow lg:h-full lg:grow lg:items-end lg:justify-end">
         <img
           alt={name}
@@ -83,7 +83,7 @@ const Page = ({ params: { crew } }: Page) => {
               {role}
             </div>
             <div className="text-2xl md:text-[40px] lg:text-[56px] lg:leading-[4rem]">
-              {name}
+              {name.replace('-', ' ')}
             </div>
           </div>
           <Description content={bio} style="lg:text-white" />

@@ -1,16 +1,24 @@
-"use client";
-
-import { Bellefair, Barlow } from "next/font/google";
+import data from "@/public/data.json";
 import clsx from "clsx";
-import React from "react";
+import { Barlow, Bellefair } from "next/font/google";
+import Link from "next/link";
+import path from "path";
 import { ClassNameValue } from "tailwind-merge";
 
 const barlow = Barlow({ subsets: ["latin"], weight: "400" });
 const bellefair = Bellefair({ subsets: ["latin"], weight: "400" });
 
+export const linkProps = [
+  { href: path.sep, label: "HOME" },
+  ...Object.entries(data).map(([dir, pages]) => ({
+    href: path.join(path.sep, dir, pages[0].name),
+    label: dir,
+  })),
+];
+
 export default function Home() {
   return (
-    <main className="relative m-6 mb-12 grid gap-20 md:mb-[90px] md:mt-[106px] md:gap-[156px] lg:mx-auto lg:mb-[131px] lg:mt-[251px] lg:grid-flow-col lg:items-end lg:justify-between xl:mx-[165px]">
+    <main className="relative m-6 mb-12 grid justify-items-center gap-20 md:mb-[90px] md:mt-[106px] md:gap-[156px] lg:mx-auto lg:mb-[131px] lg:mt-[251px] lg:grid-flow-col lg:items-end lg:justify-between xl:mx-[165px]">
       <div className="grid items-center justify-center gap-4 text-center md:gap-6 lg:text-left">
         <p
           className={clsx(
@@ -29,16 +37,15 @@ export default function Home() {
         </p>
         <Description content="Let’s face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of on the edge of it. Well sit back, and relax because we’ll give you a truly out of this world experience!" />
       </div>
-      <div className="grid place-content-center">
-        <div
-          className={clsx(
-            bellefair.className,
-            "grid h-[150px] w-[150px] place-content-center rounded-full bg-white align-middle text-xl font-normal tracking-wider text-gray-950 md:h-[242px] md:w-[242px] md:text-[32px] md:tracking-[2px] lg:h-[274px] lg:w-[274px]",
-          )}
-        >
-          <span>EXPLORE</span>
-        </div>
-      </div>
+      <Link
+        href={linkProps[1].href}
+        className={clsx(
+          bellefair.className,
+          "grid h-[150px] w-[150px] items-center rounded-full bg-white text-center text-xl font-normal tracking-wider text-gray-950 md:h-[242px] md:w-[242px] md:text-[32px] md:tracking-[2px] lg:h-[274px] lg:w-[274px]",
+        )}
+      >
+        EXPLORE
+      </Link>
     </main>
   );
 }

@@ -36,8 +36,8 @@ const Page = ({ params: { planet } }: Page) => {
   )!;
 
   return (
-    <div className="mb-[58px] grid justify-items-center gap-y-[26px] md:mb-0 md:gap-y-[53px] md:px-24 lg:mb-[118px] lg:grid-cols-2 lg:items-end lg:gap-x-[calc(100%/7)] lg:px-0 lg:pl-16">
-      <div className="relative grid aspect-square w-[170px] md:w-[300px] lg:w-full xl:h-full xl:w-auto">
+    <div className="mb-[58px] grid justify-items-center gap-y-[26px] px-6 md:mb-0 md:gap-y-[53px] md:px-24 lg:w-full lg:grid-cols-[repeat(2,400px)] lg:items-end lg:justify-end lg:gap-[calc(50%-400px)] lg:px-0 xl:grid-cols-[repeat(2,445px)] xl:justify-between xl:pl-16">
+      <div className="relative grid aspect-square w-[170px] md:w-[300px] lg:w-full">
         <Image alt={planet} src={images.png} fill />
       </div>
       <div className="grid justify-items-center gap-y-5 md:gap-y-[46px] lg:justify-items-start lg:gap-y-9">
