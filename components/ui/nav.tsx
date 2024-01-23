@@ -1,5 +1,6 @@
 "use client";
 
+import { useSubSegment } from "@/app/(sub)/layout";
 import data from "@/public/data.json";
 import { cva } from "class-variance-authority";
 import Link, { LinkProps } from "next/link";
@@ -30,11 +31,11 @@ export function MainNav({
       },
     }),
     link: cva(
-      "flex h-full items-center gap-3 border-0 border-white py-[6px] [counter-increment:count_1] before:font-bold before:content-[counter(count,decimal-leading-zero)] md:max-lg:before:content-none",
+      "flex h-full items-center gap-3 border-0 border-white border-t-transparent py-[6px] [counter-increment:count_1] before:font-bold before:content-[counter(count,decimal-leading-zero)] md:max-lg:before:content-none",
       {
         variants: {
           active: {
-            horizontal: "border-b-[3px]",
+            horizontal: "border-y-[3px]",
             vertical: "border-r-4",
           },
         },
@@ -70,9 +71,9 @@ interface Styles {
   active?: string;
 }
 
-interface NavLinks {
+interface Nav {
   linkProps: (Partial<LinkProps> & {
-    paths?: string[];
+    segments?: string[];
     label: string;
   })[];
   styles: Styles;
@@ -83,7 +84,7 @@ interface NavLinks {
   };
 }
 
-export default function Nav({ linkProps, styles, option }: NavLinks) {
+export default function Nav({ linkProps, styles, option }: Nav) {
   const pathname = usePathname();
 
   return (
@@ -91,9 +92,9 @@ export default function Nav({ linkProps, styles, option }: NavLinks) {
       {linkProps.map((linkProp) => {
         const href =
           linkProp.href ??
-          path.join(path.dirname(pathname), ...linkProp.paths!);
+          path.join(path.dirname(pathname), ...linkProp.segments!);
         const isActive = option?.main
-          ? pathname.split(path.sep)[1] == href.toString().split(path.sep)[1]
+          ? useSubSegment() == useSubSegment(href.toString())
           : pathname == href;
 
         return (

@@ -1,6 +1,5 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Provider } from "@/components/provider";
 import { Barlow_Condensed, Bellefair } from "next/font/google";
 import Background from "@/components/ui/background";
 import Header from "../components/ui/header";
@@ -35,14 +34,12 @@ export default function RootLayout({
 }) {
   return (
     <html className={barlowCondensed.className}>
-      <body className="">
-        {/* <Provider attribute="class"> */}
-        <div className="relative grid content-between">
+      <body className="text-white">
+        <div className="relative flex flex-col justify-between md:h-[1024px] lg:h-[900px] lg:justify-start">
           <Background />
           <Header />
           {children}
         </div>
-        {/* </Provider> */}
       </body>
     </html>
   );

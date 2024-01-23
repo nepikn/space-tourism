@@ -1,47 +1,37 @@
 "use client";
 
+import { SubSegments, useSubSegment } from "@/app/(sub)/layout";
 import data from "@/public/data.json";
-import { usePathname } from "next/navigation";
-import path from "path";
+import clsx from "clsx";
+import { ClassNameValue } from "tailwind-merge";
 
 const maxWidthByScreen = { mobile: "767", tablet: "1023", desktop: "" };
 const dirs = [...Object.keys(data)];
+const styles: { [k in SubSegments | "home"]?: ClassNameValue } = {
+  // destination: "opacity-25",
+  // crew: "opacity-25",
+};
+
 const getSrc = (dir: string, screen: string) => {
   return `/assets/${dir}/background-${dir}-${screen}.jpg`;
 };
 
 export default function Background() {
-  const pathname = usePathname().split(path.sep)[1]?.toLowerCase();
-  const dir = dirs.includes(pathname) ? pathname : "home";
+  const subPath = useSubSegment();
+  const dir = dirs.includes(subPath) ? subPath : "home";
 
   return (
-    <picture className="absolute -z-10 block h-full w-full">
+    <picture
+      className={clsx("absolute -z-10 block h-full w-full", styles[dir])}
+    >
       {Object.entries(maxWidthByScreen).map(([screen, maxWidth], i) => {
         const src = getSrc(dir, screen);
         return maxWidth ? (
-          <source srcSet={src} media={`(max-width: ${maxWidth}px)`} />
+          <source key={i} srcSet={src} media={`(max-width: ${maxWidth}px)`} />
         ) : (
-          <img src={src} alt="" className="h-full w-full object-cover" />
+          <img key={i} src={src} className="h-full w-full object-cover" />
         );
       })}
     </picture>
   );
 }
-
-// export default function Background({
-//   fallbackDir,
-//   srcsets,
-// }: {
-//   fallbackDir: string;
-//   srcsets: { [dir: string]: string };
-// }) {
-//   const dir = usePathname().split(path.sep)[1]?.toLowerCase();
-//   return (
-//     <div
-//       className={clsx(
-//         srcsets[dir] ?? srcsets[fallbackDir],
-//         "fixed -z-10 h-full w-full bg-cover",
-//       )}
-//     />
-//   );
-// }
