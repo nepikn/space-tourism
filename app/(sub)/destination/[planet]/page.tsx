@@ -1,4 +1,4 @@
-import Nav from "@/components/ui/nav";
+import Nav, { SubNav } from "@/components/ui/nav";
 import data from "@/public/data.json";
 import clsx from "clsx";
 import { Metadata } from "next";
@@ -36,20 +36,16 @@ const Page = ({ params: { planet } }: Page) => {
   )!;
 
   return (
-    <div className="mb-[58px] grid justify-items-center gap-y-[26px] md:mb-0 md:gap-y-[53px] md:px-24 lg:mb-[118px] lg:grid-cols-2 lg:items-end lg:gap-x-[calc(100%/7)] lg:px-0 lg:pl-16">
-      <div className="relative grid aspect-square w-[170px] md:w-[300px] lg:w-full xl:h-full xl:w-auto">
+    <div className="mb-[58px] grid justify-items-center gap-y-[26px] px-6 md:mb-0 md:gap-y-[53px] md:px-24 lg:mt-16 lg:w-full lg:grid-cols-[repeat(2,400px)] lg:items-end lg:justify-end lg:gap-[calc(50%-400px)] lg:px-0 lg:pr-16 xl:grid-cols-[repeat(2,445px)] xl:justify-between xl:pl-16 xl:pr-[167px]">
+      <div className="relative grid aspect-square w-[170px] md:w-[300px] lg:w-full">
         <Image alt={planet} src={images.png} fill />
       </div>
       <div className="grid justify-items-center gap-y-5 md:gap-y-[46px] lg:justify-items-start lg:gap-y-9">
-        <Nav
-          linkProps={data.destination.map(({ name: planet }) => ({
-            label: planet,
-            segments: [planet],
-            scroll: false,
-          }))}
-          styles={{
-            nav: "flex h-7 gap-7 text-sm uppercase tracking-widest text-indigo-200 md:h-[34px] md:w-[285.5px] md:justify-between md:text-xs lg:text-base lg:tracking-[2.70px]",
-            active: "border-b-[3px] border-white text-white",
+        <SubNav
+          showLabel={true}
+          navStyle="flex h-7 gap-7 text-sm uppercase tracking-widest text-indigo-200 md:h-[34px] md:w-[285.5px] md:justify-between md:text-xs lg:text-base lg:tracking-[2.70px]"
+          linkStyles={{
+            variant: { active: "border-b-[3px] border-white text-white" },
           }}
         />
         <section className="grid gap-y-8 text-center md:gap-y-[33.09px] lg:gap-y-7 lg:text-left">

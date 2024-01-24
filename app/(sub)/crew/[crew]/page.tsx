@@ -1,11 +1,11 @@
 import { Description } from "@/app/page";
-import Nav from "@/components/ui/nav";
 import data from "@/public/data.json";
 import { cva } from "class-variance-authority";
 import clsx from "clsx";
 import { Metadata } from "next";
 import { Barlow, Bellefair } from "next/font/google";
 import Image from "next/image";
+import { SubNav } from "@/components/ui/nav";
 
 interface Page {
   params: {
@@ -44,32 +44,23 @@ const Page = ({ params: { crew } }: Page) => {
     (d) => d.name == decodeURI(crew),
   )!;
 
-  const linkVariants = cva("aspect-square h-full rounded-full bg-white", {
-    variants: { variant: { "non-active": "opacity-20" } },
-  });
-
   // const dimension = DIMENSIONS[name];
 
   return (
-    <div className="mb-[104px] flex flex-col justify-center gap-y-8 md:mb-0 md:gap-y-10 md:px-[88px] md:max-lg:grow lg:absolute lg:bottom-0 lg:h-full lg:w-full lg:flex-row lg:items-end lg:justify-between lg:gap-x-2 lg:px-0">
+    <div className="mb-[104px] flex flex-col justify-center gap-y-8 px-6 md:mb-0 md:gap-y-10 md:px-[88px] md:max-lg:grow lg:absolute lg:bottom-0 lg:h-full lg:w-full lg:flex-row lg:items-end lg:justify-between lg:gap-x-2 lg:px-0 lg:pr-16 xl:pr-[167px]">
       <picture className="relative flex h-[223px] justify-center border-b border-gray-700 md:order-1 md:border-0 md:max-lg:grow lg:h-full lg:grow lg:items-end lg:justify-end">
         <img
           alt={name}
           src={images.png}
-          className="absolute h-full lg:h-auto"
+          className="absolute h-full lg:h-auto xl:max-h-full"
         />
       </picture>
       <div className="grid justify-items-center gap-y-8 md:gap-y-10 lg:mb-[94px] lg:max-w-[50%] lg:justify-items-start lg:gap-y-[120px]">
-        <Nav
-          linkProps={data.crew.map(({ name: crew }) => ({
-            label: "",
-            segments: [encodeURI(crew)],
-            scroll: false,
-          }))}
-          styles={{
-            nav: "flex h-[10px] gap-4 md:order-1",
-            link: linkVariants({ variant: "non-active" }),
-            active: linkVariants(),
+        <SubNav
+          navStyle="flex h-[10px] gap-4 md:order-1"
+          linkStyles={{
+            base: "aspect-square h-full rounded-full bg-white",
+            variant: { idle: "opacity-20" },
           }}
         />
         <section className="grid gap-4 text-center lg:gap-[27px] lg:text-left">
@@ -82,9 +73,7 @@ const Page = ({ params: { crew } }: Page) => {
             <div className="opacity-50 md:text-2xl lg:text-[32px] lg:leading-[1.15]">
               {role}
             </div>
-            <div className="text-2xl md:text-[40px] lg:text-[56px] lg:leading-[4rem]">
-              {name}
-            </div>
+            <Name name={name} />
           </div>
           <Description content={bio} style="lg:text-white" />
         </section>
@@ -94,3 +83,16 @@ const Page = ({ params: { crew } }: Page) => {
 };
 
 export default Page;
+
+export function Name({ name }: { name: string }) {
+  return (
+    <div
+      className={clsx(
+        bellefair.className,
+        "text-2xl uppercase md:text-[40px] md:leading-[1.15] lg:text-[56px] lg:leading-[4rem]",
+      )}
+    >
+      {name.replace("-", " ")}
+    </div>
+  );
+}
