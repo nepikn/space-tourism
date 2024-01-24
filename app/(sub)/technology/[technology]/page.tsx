@@ -1,10 +1,10 @@
 import { Description } from "@/app/page";
-import Nav from "@/components/ui/nav";
+import { SubNav } from "@/components/ui/nav";
 import data from "@/public/data.json";
-import { cva } from "class-variance-authority";
 import clsx from "clsx";
 import { Metadata } from "next";
 import { Bellefair } from "next/font/google";
+import { Name } from "../../crew/[crew]/page";
 
 interface Page {
   params: {
@@ -34,56 +34,40 @@ const Page = ({ params: { technology } }: Page) => {
     (d) => d.name == decodeURI(technology),
   )!;
 
-  const linkVariants = cva(
-    "h-full aspect-square rounded-full [counter-increment:count_1] before:content-[counter(count,decimal)] flex justify-center items-center",
-    {
-      variants: {
-        variant: {
-          default: "border border-white opacity-25",
-          active: "bg-white before:text-gray-950",
-        },
-      },
-      defaultVariants: { variant: "default" },
-    },
-  );
-
   // const dimension = DIMENSIONS[name];
 
   return (
-    <div className="relative flex h-[570px] flex-col gap-y-[34px] md:h-auto">
-      <picture className="relative flex h-[170px]">
+    <div className="relative flex h-[570px] flex-col gap-y-[34px] md:h-auto md:gap-y-[57px] lg:mt-[26px] lg:w-full lg:flex-row-reverse lg:justify-between lg:gap-x-8">
+      <picture className="relative flex h-[170px] md:h-[310px] lg:h-[515px] lg:w-[527px]">
+        <source srcSet={images.landscape} media={"(max-width: 1023px)"} />
         <img
           alt={name}
-          className="h-full object-cover"
-          src={images.landscape}
+          className="h-full object-cover lg:h-auto lg:w-full"
+          src={images.portrait}
         />
       </picture>
-      <div className="flex flex-col gap-y-[26px] px-6">
-        <Nav
-          linkProps={data.technology.map(({ name: technology }) => ({
-            label: "",
-            segments: [encodeURI(technology)],
-            scroll: false,
-          }))}
-          styles={{
-            nav: clsx(
-              bellefair.className,
-              "h-10 flex gap-4 justify-center [counter-reset:count_-1]",
-            ),
-            link: linkVariants(),
-            active: linkVariants({ variant: "active" }),
+      <div className="flex flex-col gap-y-[26px] px-6 md:gap-y-[45px] lg:mt-[111px] lg:flex-row lg:gap-x-8 lg:px-0 xl:gap-x-20">
+        <SubNav
+          linkStyles={{
+            base: "flex aspect-square h-10 items-center justify-center rounded-full [counter-increment:count_1] before:content-[counter(count,decimal)] md:h-[60px] md:text-2xl lg:h-auto lg:w-20",
+            variant: {
+              idle: "border border-white border-opacity-25",
+              active: "bg-white before:text-gray-950",
+            },
           }}
+          navStyle={clsx(
+            bellefair.className,
+            "flex shrink-0 justify-center gap-4 [counter-reset:count_-1] lg:flex-col lg:justify-start lg:gap-8",
+          )}
         />
-        <div className="flex flex-col gap-4 text-center">
-          <div className="flex flex-col gap-[9px]">
-            <div className="text-sm tracking-widest text-indigo-200">
+        <div className="flex flex-col items-center gap-4 text-center lg:items-start lg:text-left">
+          <div className="flex flex-col gap-[9px] md:gap-4 lg:gap-[11px]">
+            <div className="text-sm tracking-widest text-indigo-200 md:tracking-[2.70px]">
               THE TERMINOLOGY…
             </div>
-            <div className={clsx(bellefair.className, "text-2xl uppercase")}>
-              {name.replace('-', ' ')}
-            </div>
+            <Name name={name} />
           </div>
-          <Description content={description} />
+          <Description content={description} style="md:max-lg:max-w-[458px]" />
         </div>
       </div>
     </div>

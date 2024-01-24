@@ -8,7 +8,7 @@ import { ClassNameValue } from "tailwind-merge";
 const barlow = Barlow({ subsets: ["latin"], weight: "400" });
 const bellefair = Bellefair({ subsets: ["latin"], weight: "400" });
 
-export const linkProps = [
+export const mainNavLinks = [
   { href: path.sep, label: "HOME" },
   ...Object.entries(data).map(([dir, pages]) => ({
     href: path.join(path.sep, dir, pages[0].name),
@@ -38,7 +38,7 @@ export default function Home() {
         <Description content="Let’s face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of on the edge of it. Well sit back, and relax because we’ll give you a truly out of this world experience!" />
       </div>
       <Link
-        href={linkProps[1].href}
+        href={mainNavLinks[1].href}
         className={clsx(
           bellefair.className,
           "grid h-[150px] w-[150px] items-center rounded-full bg-white text-center text-xl font-normal tracking-wider text-gray-950 md:h-[242px] md:w-[242px] md:text-[32px] md:tracking-[2px] lg:h-[274px] lg:w-[274px]",
