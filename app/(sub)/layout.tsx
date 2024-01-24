@@ -1,10 +1,7 @@
 "use client";
 
-import data from "@/public/data.json";
 import { usePathname } from "next/navigation";
-import path from "path";
-
-export type SubSegments = keyof typeof data;
+import { SubSegments, getSubSegment } from "../../lib/generator";
 
 const titles = {
   destination: "Pick your destination",
@@ -28,13 +25,9 @@ export default function SubLayout({
             .toString()
             .padStart(2, "0")}
         </span>
-        <h1>{titles[subSegment]}</h1>
+        <h2>{titles[subSegment]}</h2>
       </header>
       {children}
     </main>
   );
 }
-
-export const getSubSegment = (pathname: string) => {
-  return pathname.split(path.sep)[1] as SubSegments;
-};

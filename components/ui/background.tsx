@@ -1,18 +1,13 @@
 "use client";
 
-import { SubSegments, getSubSegment } from "@/app/(sub)/layout";
+import { getSubSegment } from "@/lib/generator";
 import data from "@/public/data.json";
-import clsx from "clsx";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ClassNameValue } from "tailwind-merge";
 
 const maxWidthByScreen = { mobile: "767", tablet: "1023", desktop: "" };
 const dirs = [...Object.keys(data)];
 const defaultDir = "home";
-const styles: { [k in SubSegments | typeof defaultDir]?: ClassNameValue } = {
-  // destination: "opacity-25",
-  // crew: "opacity-25",
-};
 
 const getSrc = (dir: string, screen: string) => {
   return `/assets/${dir}/background-${dir}-${screen}.jpg`;
@@ -24,15 +19,13 @@ export default function Background() {
   const dir = dirs.includes(subSegment) ? subSegment : defaultDir;
 
   return (
-    <picture
-      className={clsx("absolute -z-10 block h-full w-full", styles[dir])}
-    >
+    <picture className={"absolute -z-10 block h-full w-full"}>
       {Object.entries(maxWidthByScreen).map(([screen, maxWidth], i) => {
         const src = getSrc(dir, screen);
         return maxWidth ? (
           <source key={i} srcSet={src} media={`(max-width: ${maxWidth}px)`} />
         ) : (
-          <img
+          <Image
             key={i}
             alt=""
             src={src}

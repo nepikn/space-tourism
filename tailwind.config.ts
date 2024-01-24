@@ -19,10 +19,6 @@ const config: Config = {
     },
     extend: {
       colors: { secondary: "#78716c" },
-      borderColor: {
-        ...defaultTheme.borderColor,
-        DEFAULT: "#737373",
-      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
