@@ -1,40 +1,22 @@
-import { Description } from "@/app/page";
+import { Description } from "@/components/ui/description";
+import { Name } from "@/components/ui/name";
 import { SubNav } from "@/components/ui/nav";
+import { Generator, PageProps } from "@/lib/generator";
 import data from "@/public/data.json";
 import clsx from "clsx";
-import { Metadata } from "next";
 import { Bellefair } from "next/font/google";
-import { Name } from "../../crew/[crew]/page";
 
-interface Page {
-  params: {
-    technology: string;
-  };
-}
-
+const generator = new Generator("technology");
 export const dynamicParams = false;
-export async function generateStaticParams() {
-  return data.technology.map(
-    (d) =>
-      ({
-        technology: encodeURI(d.name),
-      }) satisfies Page["params"],
-  );
-}
-export async function generateMetadata({ params }: Page) {
-  return {
-    title: decodeURI(params.technology),
-  } satisfies Metadata;
-}
+export const generateStaticParams = async () => generator.getStaticParams();
+export const generateMetadata = async (props: PageProps) => {
+  return generator.getMetaData(props);
+};
 
 const bellefair = Bellefair({ subsets: ["latin"], weight: "400" });
 
-const Page = ({ params: { technology } }: Page) => {
-  const { name, images, description } = data.technology.find(
-    (d) => d.name == decodeURI(technology),
-  )!;
-
-  // const dimension = DIMENSIONS[name];
+const Page = ({ params: { name } }: PageProps) => {
+  const { images, description } = data.technology.find((d) => d.name == name)!;
 
   return (
     <div className="relative flex h-[570px] flex-col gap-y-[34px] md:h-auto md:gap-y-[57px] lg:mt-[26px] lg:w-full lg:flex-row-reverse lg:justify-between lg:gap-x-8">
@@ -48,25 +30,25 @@ const Page = ({ params: { technology } }: Page) => {
       </picture>
       <div className="flex flex-col gap-y-[26px] px-6 md:gap-y-[45px] lg:mt-[111px] lg:flex-row lg:gap-x-8 lg:px-0 xl:gap-x-20">
         <SubNav
-          linkStyles={{
-            base: "flex aspect-square h-10 items-center justify-center rounded-full [counter-increment:count_1] before:content-[counter(count,decimal)] md:h-[60px] md:text-2xl lg:h-auto lg:w-20",
-            variant: {
-              idle: "border border-white border-opacity-25",
-              active: "bg-white before:text-gray-950",
-            },
-          }}
           navStyle={clsx(
             bellefair.className,
             "flex shrink-0 justify-center gap-4 [counter-reset:count_-1] lg:flex-col lg:justify-start lg:gap-8",
           )}
+          linkStyles={{
+            base: "flex aspect-square h-10 items-center justify-center rounded-full border-white [counter-increment:count_1] before:content-[counter(count,decimal)] md:h-[60px] md:text-2xl lg:h-auto lg:w-20",
+            variant: {
+              idle: "border border-opacity-25 hover:border-opacity-100",
+              active: "bg-white before:text-gray-950",
+            },
+          }}
         />
         <div className="flex flex-col items-center gap-4 text-center lg:items-start lg:text-left">
-          <div className="flex flex-col gap-[9px] md:gap-4 lg:gap-[11px]">
-            <div className="text-sm tracking-widest text-indigo-200 md:tracking-[2.70px]">
+          <h1 className="flex flex-col gap-[9px] md:gap-4 lg:gap-[11px]">
+            <p className="text-sm tracking-widest text-indigo-200 md:tracking-[2.70px]">
               THE TERMINOLOGY…
-            </div>
+            </p>
             <Name name={name} />
-          </div>
+          </h1>
           <Description content={description} style="md:max-lg:max-w-[458px]" />
         </div>
       </div>

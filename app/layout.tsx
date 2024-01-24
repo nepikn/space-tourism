@@ -7,7 +7,6 @@ import Header from "../components/ui/header";
 export const metadata: Metadata = {
   title: { template: "%s - Space Tourism", default: "Space Tourism" },
   generator: "Next.js",
-  // applicationName: "Kaminari",
   referrer: "origin-when-cross-origin",
   authors: [{ name: "PCH", url: "https://github.com/nepikn" }],
   colorScheme: "dark light",
@@ -18,8 +17,6 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://nepikn.vercel.app"),
-  alternates: {},
   robots: {
     index: true,
   },

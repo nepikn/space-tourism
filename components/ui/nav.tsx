@@ -1,33 +1,12 @@
 "use client";
 
-import { getSubSegment } from "@/app/(sub)/layout";
-import { mainNavLinks } from "@/app/page";
+import { getSubSegment } from "@/lib/generator";
+import { mainNavLinks } from "@/lib/generator";
 import data from "@/public/data.json";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import Link, { LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
 import path from "path";
-
-// "aspect-square h-full rounded-full bg-white"
-// "h-full aspect-square rounded-full [counter-increment:count_1] before:content-[counter(count,decimal)] flex justify-center items-center md:text-2xl"
-// "flex h-full items-center gap-3 border-white border-t-transparent py-[6px] [counter-increment:count_1] before:font-bold before:content-[counter(count,decimal-leading-zero)] md:max-lg:before:content-none"
-
-// const linkVariants = cva('h-full',{
-//   variants:{
-//     shape:{
-//       circle:'aspect-square rounded-full',
-//     },
-//     index:{
-//       decimal:'[counter-increment:count_1] before:content-[counter(count,decimal)]'
-//     },
-//     idle:{
-
-//     },
-//     active:{
-
-//     }
-//   }
-// })
 
 const variants = {
   nav: cva("uppercase text-white [counter-reset:count_-1]", {
@@ -43,6 +22,11 @@ const variants = {
     "flex h-full items-center gap-3 border-white py-[6px] [counter-increment:count_1] before:font-bold before:content-[counter(count,decimal-leading-zero)] md:max-lg:before:content-none",
     {
       variants: {
+        idle: {
+          horizontal:
+            "border-t-transparent hover:border-y-[3px] hover:border-opacity-50",
+          vertical: "hover:border-r-4 hover:border-opacity-50",
+        },
         active: {
           horizontal: "border-y-[3px] border-t-transparent",
           vertical: "border-r-4",
@@ -50,15 +34,6 @@ const variants = {
       },
     },
   ),
-};
-
-const options = {
-  main: true,
-  // Prefix: ({ index }: { index: string }) => (
-  //   <span className="font-bold md:hidden lg:inline">
-  //     {index.padStart(2, "0")}
-  //   </span>
-  // ),
 };
 
 export function MainNav({
@@ -79,23 +54,12 @@ export function MainNav({
       }))}
       styles={{
         nav: variants.nav({ variant }),
-        link: variants.link(),
+        link: variants.link({ idle: variant }),
         active: variants.link({ active: variant }),
       }}
     />
   );
 }
-
-// const subNavLinkVariants = cva("", {
-//   variants: {
-//     variant: {
-//       idle: "",
-//       hover: "",
-//       active: "",
-//     },
-//   },
-//   defaultVariants: { variant: "idle" },
-// });
 
 interface SubNav {
   showLabel?: boolean;
@@ -149,7 +113,6 @@ interface NavProps {
     link?: string;
     active?: string;
   };
-  // variant?: string;
   options?: Partial<LinkProps>;
 }
 

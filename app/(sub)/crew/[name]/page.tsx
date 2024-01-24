@@ -1,50 +1,22 @@
-import { Description } from "@/app/page";
+import { Description } from "@/components/ui/description";
 import data from "@/public/data.json";
-import { cva } from "class-variance-authority";
 import clsx from "clsx";
-import { Metadata } from "next";
-import { Barlow, Bellefair } from "next/font/google";
-import Image from "next/image";
+import { Bellefair } from "next/font/google";
 import { SubNav } from "@/components/ui/nav";
+import { type PageProps, Generator } from "@/lib/generator";
+import { Name } from "@/components/ui/name";
 
-interface Page {
-  params: {
-    crew: string;
-  };
-}
-
+const generator = new Generator("crew");
 export const dynamicParams = false;
-export async function generateStaticParams() {
-  return data.crew.map(
-    (d) =>
-      ({
-        crew: encodeURI(d.name),
-      }) satisfies Page["params"],
-  );
-}
+export const generateStaticParams = async () => generator.getStaticParams();
+export const generateMetadata = async (props: PageProps) => {
+  return generator.getMetaData(props);
+};
 
-export async function generateMetadata({ params }: Page) {
-  return {
-    title: decodeURI(params.crew),
-  } satisfies Metadata;
-}
-
-const barlow = Barlow({ subsets: ["latin"], weight: "400" });
 const bellefair = Bellefair({ subsets: ["latin"], weight: "400" });
 
-// const DIMENSIONS: {
-//   [k: (typeof data)["crew"][number]["name"]]: { width: number; height: number };
-// } = {
-//   "Douglas Hurley": { width: 514, height: 700 },
-//   "Mark Shuttleworth": { width: 433, height: 640 },
-// };
-
-const Page = ({ params: { crew } }: Page) => {
-  const { name, images, role, bio } = data.crew.find(
-    (d) => d.name == decodeURI(crew),
-  )!;
-
-  // const dimension = DIMENSIONS[name];
+const Page = ({ params: { name } }: PageProps) => {
+  const { images, role, bio } = data.crew.find((d) => d.name == name)!;
 
   return (
     <div className="mb-[104px] flex flex-col justify-center gap-y-8 px-6 md:mb-0 md:gap-y-10 md:px-[88px] md:max-lg:grow lg:absolute lg:bottom-0 lg:h-full lg:w-full lg:flex-row lg:items-end lg:justify-between lg:gap-x-2 lg:px-0 lg:pr-16 xl:pr-[167px]">
@@ -60,21 +32,21 @@ const Page = ({ params: { crew } }: Page) => {
           navStyle="flex h-[10px] gap-4 md:order-1"
           linkStyles={{
             base: "aspect-square h-full rounded-full bg-white",
-            variant: { idle: "opacity-20" },
+            variant: { idle: "opacity-20 hover:opacity-50" },
           }}
         />
         <section className="grid gap-4 text-center lg:gap-[27px] lg:text-left">
-          <div
+          <h1
             className={clsx(
               bellefair.className,
               "grid gap-2 uppercase lg:gap-[15px]",
             )}
           >
-            <div className="opacity-50 md:text-2xl lg:text-[32px] lg:leading-[1.15]">
+            <p className="opacity-50 md:text-2xl lg:text-[32px] lg:leading-[1.15]">
               {role}
-            </div>
+            </p>
             <Name name={name} />
-          </div>
+          </h1>
           <Description content={bio} style="lg:text-white" />
         </section>
       </div>
@@ -83,16 +55,3 @@ const Page = ({ params: { crew } }: Page) => {
 };
 
 export default Page;
-
-export function Name({ name }: { name: string }) {
-  return (
-    <div
-      className={clsx(
-        bellefair.className,
-        "text-2xl uppercase md:text-[40px] md:leading-[1.15] lg:text-[56px] lg:leading-[4rem]",
-      )}
-    >
-      {name.replace("-", " ")}
-    </div>
-  );
-}

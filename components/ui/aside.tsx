@@ -19,7 +19,7 @@ export default function Aside({ expand, toggleAside }: Props) {
     <div
       className={clsx(
         expand || "translate-x-full",
-        "fixed left-0 top-0 z-10 flex h-screen w-screen transition-transform",
+        "fixed left-0 top-0 z-10 flex h-screen w-full transition-transform",
       )}
     >
       <div onClick={toggleAside} className="grow" />

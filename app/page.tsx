@@ -1,20 +1,10 @@
-import data from "@/public/data.json";
+import { mainNavLinks } from "@/lib/generator";
 import clsx from "clsx";
-import { Barlow, Bellefair } from "next/font/google";
+import { Bellefair } from "next/font/google";
 import Link from "next/link";
-import path from "path";
-import { ClassNameValue } from "tailwind-merge";
+import { Description } from "../components/ui/description";
 
-const barlow = Barlow({ subsets: ["latin"], weight: "400" });
 const bellefair = Bellefair({ subsets: ["latin"], weight: "400" });
-
-export const mainNavLinks = [
-  { href: path.sep, label: "HOME" },
-  ...Object.entries(data).map(([dir, pages]) => ({
-    href: path.join(path.sep, dir, pages[0].name),
-    label: dir,
-  })),
-];
 
 export default function Home() {
   return (
@@ -41,30 +31,11 @@ export default function Home() {
         href={mainNavLinks[1].href}
         className={clsx(
           bellefair.className,
-          "grid h-[150px] w-[150px] items-center rounded-full bg-white text-center text-xl font-normal tracking-wider text-gray-950 md:h-[242px] md:w-[242px] md:text-[32px] md:tracking-[2px] lg:h-[274px] lg:w-[274px]",
+          "grid aspect-square h-[150px] items-center rounded-full bg-white text-center text-xl font-normal tracking-wider text-gray-950 outline outline-white/10 hover:outline-[50px] md:h-[242px] md:text-[32px] md:tracking-[2px] md:hover:outline-[80px] lg:h-[274px] lg:hover:outline-[88px]",
         )}
       >
         EXPLORE
       </Link>
     </main>
-  );
-}
-
-interface Description {
-  content: string;
-  style?: ClassNameValue;
-}
-
-export function Description({ content, style }: Description) {
-  return (
-    <p
-      className={clsx(
-        barlow.className,
-        "max-w-[444px] text-[15px] leading-[25px] text-indigo-200 md:text-base md:leading-7 lg:text-[18px] lg:leading-8",
-        style,
-      )}
-    >
-      {content}
-    </p>
   );
 }

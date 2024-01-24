@@ -14,7 +14,7 @@ export default function Header() {
       <div className="relative aspect-square w-10 lg:w-12">
         <Image alt="logo" src={"/assets/shared/logo.svg"} fill />
       </div>
-      <div className="z-10 ml-[30px] hidden h-px grow translate-x-8 bg-white opacity-25 xl:block" />
+      <div className="z-10 ml-[30px] hidden h-px grow translate-x-8 bg-white/25 xl:block" />
 
       <div className="md:hidden">
         <button onClick={toggleAside}>
@@ -27,7 +27,7 @@ export default function Header() {
         </button>
         <Aside expand={expand} toggleAside={toggleAside} />
       </div>
-      <div className="hidden h-24 bg-white bg-opacity-5 backdrop-blur-3xl md:flex md:w-[450px] md:justify-center lg:w-auto lg:justify-start lg:pl-24 lg:max-xl:pr-[10%] xl:w-[830px] xl:pl-[123px]">
+      <div className="hidden h-24 bg-white/5 backdrop-blur-3xl md:flex md:w-[450px] md:justify-center lg:w-auto lg:justify-start lg:pl-24 lg:max-xl:pr-[10%] xl:w-[830px] xl:pl-[123px]">
         <MainNav />
       </div>
     </header>
