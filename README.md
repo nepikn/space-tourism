@@ -10,7 +10,7 @@
 
 ## 展示
 
-| Page        | 375px                                                                                                    | 768px                                                                                                    | 1440px                                                                                                     |
+|             | 375px                                                                                                    | 768px                                                                                                    | 1440px                                                                                                     |
 | ----------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | Home        | ![home-375](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/home-375.jpg) | ![home-768](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/home-768.jpg) | ![home-1440](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/home-1440.jpg) |
 | Destination | ![dest-375](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/dest-375.jpg) | ![dest-768](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/dest-768.jpg) | ![dest-1440](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/dest-1440.jpg) |
@@ -29,13 +29,12 @@
 
 ### 以 `counter()` 作為有序清單的項目前綴
 
-![home-1440-nav](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/home-1440-nav.jpg)
+![home-1440-nav](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/home-1440-nav.png)
 
 ```html
-<nav class="... [counter-reset:count_-1]">
+<nav class="[counter-reset:count_-1]">
   <a
-    class="...
-            [counter-increment:count_1]
+    class="[counter-increment:count_1]
             before:content-[counter(count,decimal-leading-zero)]"
     href="/"
     >home</a
@@ -50,9 +49,9 @@
 
 ### 以 `useState` 展開／折疊 `<aside>`
 
-| 展開                                                                                                     | 折疊                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| ![home-375](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/home-375.jpg) | ![home-375-expand](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/home-375-expand.jpg) |
+| 展開                                                                                                                       | 折疊                                                                                                                   |
+| -------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| ![home-375-collapse](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/home-375-collapse.jpg) | ![home-375-expand](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/home-375-expand.jpg) |
 
 ```typescript
 // header.tsx
