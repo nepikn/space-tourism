@@ -17,7 +17,7 @@
 | Crew        | ![crew-375](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/crew-375.jpg) | ![crew-768](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/crew-768.jpg) | ![crew-1440](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/crew-1440.jpg) |
 | Technology  | ![tech-375](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/tech-375.jpg) | ![tech-768](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/tech-768.jpg) | ![tech-1440](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/tech-1440.jpg) |
 
-> [Live Demo]()
+> [Live Demo](https://space-tourism-pch.vercel.app/)
 
 ## 主要技術
 
@@ -49,9 +49,9 @@
 
 ### 以 `useState` 展開／折疊 `<aside>`
 
-| 展開                                                                                                                       | 折疊                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| ![home-375-collapse](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/home-375-collapse.jpg) | ![home-375-expand](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/home-375-expand.jpg) |
+| 展開                                                                                                                   | 折疊                                                                                                                       |
+| ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| ![home-375-expand](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/home-375-expand.jpg) | ![home-375-collapse](https://raw.githubusercontent.com/nepikn/space-tourism/main/public/screenshots/home-375-collapse.jpg) |
 
 ```typescript
 // header.tsx
