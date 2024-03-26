@@ -27,8 +27,9 @@ export default function Background() {
         ) : (
           <Image
             key={i}
-            alt=""
             src={src}
+            alt=""
+            fill
             className="h-full w-full object-cover"
           />
         );

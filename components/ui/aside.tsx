@@ -32,7 +32,7 @@ export default function Aside({ expand, toggleAside }: Props) {
             <Image src="/assets/shared/icon-close.svg" alt="close" fill />
           </button>
         </div>
-        <div className="mt-[31px] pl-8" onClick={handleNavClick}>
+        <div onClick={handleNavClick} className="mt-[31px] pl-8">
           <MainNav variant="vertical" />
         </div>
       </aside>

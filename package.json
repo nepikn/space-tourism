@@ -45,7 +45,6 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.2.2"
   },
-  "description": "[Live Demo]()",
   "main": "next.config.js",
   "directories": {
     "lib": "lib"

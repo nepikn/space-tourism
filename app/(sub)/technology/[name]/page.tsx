@@ -32,7 +32,7 @@ const Page = ({ params: { name } }: PageProps) => {
         <SubNav
           navStyle={clsx(
             bellefair.className,
-            "flex shrink-0 justify-center gap-4 [counter-reset:count_-1] lg:flex-col lg:justify-start lg:gap-8",
+            "flex shrink-0 justify-center gap-4 [counter-reset:count_0] lg:flex-col lg:justify-start lg:gap-8",
           )}
           linkStyles={{
             base: "flex aspect-square h-10 items-center justify-center rounded-full border-white [counter-increment:count_1] before:content-[counter(count,decimal)] md:h-[60px] md:text-2xl lg:h-auto lg:w-20",
